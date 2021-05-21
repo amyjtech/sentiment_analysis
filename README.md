@@ -1,2 +1,3 @@
-# sentiment_analysis
-Sentiment Analysis tool developed using Python
+# Sentiment Analysis Tool
+## Analyzing Instagram, Facebook, and Twitter
+
