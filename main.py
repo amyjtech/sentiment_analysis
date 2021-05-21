@@ -1,7 +1,8 @@
 # Importing packages
 from selenium.webdriver import Chrome 
 from bs4 import BeautifulSoup
-from instascrape import *
+from instascrape import Profile, scrape_posts
+# !! Only grabbing 2 packages to increase load time while testing functionality
 # Need to read posts, comments, hashtags
 
 class WebScrape():
@@ -21,6 +22,22 @@ class WebScrape():
         # By default, ChromeDriver will create a new temporary profile for each session.
         # You can use the user-data-dir Chrome command-line switch to tell Chrome which profile to use:
         options = webdriver.ChromeOptions()
+        
+       # A session ID is needed
+       # # This allows you to scrape without being kicked out since cookies are saved
+        ''' 
+        Generating Session ID 
+            1. Login into Instagram on web-browser
+            2. Inspect page & select 'application' tab
+            3 . Select 'cookies' and then double-click 'sessionid'
+            4. Wait for the complete value to load, copy & past below
+        '''
+        
+        session_id = 'SESSION ID GOES HERE'
+        headers = {
+            "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.57",
+            "cookie": "sessionid={session_id};"
+            }
         
     # Make sure we exit/close chrome when we are done with scraping
     def end(self):
