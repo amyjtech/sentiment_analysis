@@ -41,14 +41,20 @@ driver = webdriver.Chrome(PATH, options=options)
 FACEBOOK SCRAPER
 
 https://www.facebook.com/rideclutch
+
+Semi-Functional, scrapes several posts until-
+(<class 'TypeError'>, TypeError("'NoneType' object is not iterable"), <traceback object at 0x000001EA024161C0>)
+
+! Only scrapes 7 comments per post
 '''
 def fb_save_comments():
+    print("Starting FB Scrape")
     try:
         # Searching posts in 'username', and selecting their comments
         for post in get_posts('rideclutch',options={"comments": True}):
             # Setting post url to variable for use
             post_url = post['post_url']
-            # Appending the comments to instagram_comments.txt file
+            # Appending the comments file
             save_fb = open("fb_comments.txt", "a", encoding="utf-8")
             
             # Selenium grabs post url and goes to page
@@ -71,17 +77,15 @@ def fb_save_comments():
                 comment_time = comment.get('comment_time')
 
                 # Setting up list for file
-                comments = [commenter_name, comment_text, str(comment_time)]
+                fb_comments = ["FB Name: ", commenter_name, " FB Comment: ", comment_text, " FB Comment Time: ", str(comment_time), ";  "]
 
                 # Reading to file
-                for single in comments:
-                    save_fb.write(single)
-                    save_fb.write("/")
+                for line in fb_comments:
+                    save_fb.write(line)
                 
                 save_fb.write("\n")
             # Stating scrape of post with URL complete
-            fb_scraped_list.append(driver.current_url)
-            print(f"Scraped: {driver.current_url}")
+            print(f"Scraped: {len(fb_comments)} comments from {driver.current_url}")
 
         # Stating scrape was complete and successful
         print("Facebook Scrape Complete\n")
