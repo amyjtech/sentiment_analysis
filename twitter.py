@@ -50,7 +50,7 @@ def save_tweets():
         tweets_list = []
 
         # Appending the tweets to file
-        save_twitter = open("tweets.txt", "w", encoding="utf-8")
+        save_twitter = open("tweets.txt", "a", encoding="utf-8")
 
         # Using TwitterSearchScraper to scrape data and append tweets to list
         # since:2020-06-01 until:2021-05-20 <-- specify timeframe

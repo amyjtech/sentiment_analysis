@@ -18,6 +18,9 @@ from bs4 import BeautifulSoup as bs
 # Used for FB scraper
 from facebook_scraper import get_posts
 
+# Used for Twitter scraper
+import snscrape.modules.twitter as sntwitter
+
 # Used for sleep
 import time
 
