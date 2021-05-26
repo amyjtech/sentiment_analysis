@@ -1,3 +1,8 @@
+# Used for general errors
+import sys
+# Writing to csv file
+import csv
+
 from selenium import webdriver
 # This allows you to interact with webpage, type/enter text, etc.
 from selenium.webdriver.common.keys import Keys
@@ -31,88 +36,111 @@ driver = webdriver.Chrome(PATH, options=options)
 
 '''
 INSTAGRAM SCRAPER
+-------------------
+x Scrape comments under post
+x Click '+' and load all comments
+x Scrape indefinitely/user specified amount
+x Save comments to csv file
+x Save data in an easy to manage way
 
-Runs/opens the desired Instagram page
-
-https://www.instagram.com/rideclutch
-    x Clicking and grabbing comments from posts by clicking on most recent post
-
-https://www.instagram.com/explore/tags/rideclutch/
-    o Hashtags are not functional -- stretch
-
-1. Need to save the 'https://www.instagram.com/p/' url for each post
-    - Able to set limit of URL's collected
-        x Create a for loop for this and set a max
-    x Access comments [username, comment, days posted, reply/if any replies]
-    - Access date/time post was created
-        o Need to access on page
+o Scrape specific time/dates
+o Scrape replies to comments
+o Read/identify comments scraped so they are not scraped again
+o Save URLs scraped
+o Scrape Hashtags
 '''
-
-# driver.get("webpage") will bring up any page you need
+# Going to the Instagram we want to scrape
 driver.get("https://www.instagram.com/rideclutch")
 
-# Clicks on the first/most recent post
-prev = driver.find_element_by_class_name("_9AhH0")
-prev.click()
+# Setting variables
+# recent_post = identifies element used to select/click on posts
+# wait = lets driver know to wait 10secs for element to be found or throw an error -- used for expected_conditions or EC
+recent_post = driver.find_element_by_class_name("_9AhH0")
+wait = WebDriverWait(driver, 10)
 
-# Sleeping lets the page to load before continuing
-# Having problems with explicit wait
-time.sleep(3)
+# Telling driver to wait until element appears
+insta_profile = wait.until(EC.presence_of_element_located((By.CLASS_NAME, "_9AhH0")))
 
-# Gathers the URL of the current page
-def get_url():
-    print(driver.current_url)
+# Click on element once it appears
+recent_post.click()
 
 # Loads all the comments on an image
-'''
-!! Need to handle when button disappears/end of comments
-'''
 def insta_load_comment():
     click = 0
-
-    try:
-        # Load more comments by clicking button
-        load_more = driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk > ul > li > div > button")
-        # Action to click the button
-        load_more.click()
-        click = click + 1
-        print(f"Click {click} successful")    
-    except exceptions.InvalidSelectorException as e:
-        print(f"{e}")
+    print(f"Loading Comments: {driver.current_url}")
     
-    while click < 3:
+    # Endless click
+    while click < 99:
         try:
-            time.sleep(3)
-            load_more.click()
-            click = click + 1
-            print(f"Click {click} successful")
+            # Waits until comment_body loads before cont
+            comment_body = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk")))
             
-        # Will receive an error unless this expection is in place
-        # Retries clicking the button
-        except exceptions.StaleElementReferenceException as e:
-            print(f"\n{e}\nAttempting to access again")
+            # Setting variable for '+' button to load more comments
             load_more = driver.find_element_by_css_selector("body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk > ul > li > div > button")
-             # Action to click the button
+            
+            # Action to click the '+' button
             load_more.click()
             click = click + 1
             print(f"Click {click} successful") 
-    
-def insta_save_comment():
-    # Appending the comments to instagram_comments.txt file
-    save_insta = open("instagram_comments.txt", "a", encoding="utf-8")
-                
-    comment_body = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CSS_SELECTOR, "body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk")))
-    
-    comment = comment_body.find_elements_by_xpath("/html/body/div[5]/div[2]/div/article/div[3]/div[1]/ul/ul")
-    
-    # Reading through comments and writing to file
-    # Each instance is seperated by \n
-    for x in comment:        
-        save_insta.write(x.text)
-        save_insta.write("/")
-
+            
+        # Let user know they have reached end of comments
+        except exceptions.NoSuchElementException as e:
+            print(f"End of comments")
+            break
+        
 # Clicks on the right arrow to navigate to the next page
 def insta_click_right():
     r_arrow = driver.find_element_by_link_text("Next")
     r_arrow.click()
+
+# Saves comments after they have been loaded
+def insta_save_comment():  
+    # CSV File
+    insta_file = "insta_comments.csv"
+    
+    # Setting scraped_posts to 0 so we can set an amount
+    scraped_posts = 0
+    
+    # Setting amount of posts to scrape
+    while scraped_posts < 20:
+        try:            
+            comment_body = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk")))
+
+            comment = comment_body.find_elements_by_xpath("/html/body/div[5]/div[2]/div/article/div[3]/div[1]/ul/ul")
+            print(f"Scraping: {driver.current_url}")
+    
+            # Opening CSV file, 'a+' appends and reads, encoding utf-8 prevents errors and saves emojis, newline='' prevents \n spacing betwen rows
+            with open(insta_file, 'a+',encoding='utf-8',newline='') as csvfile:          
+                # Creating CSV Writer
+                insta_csv = csv.writer(csvfile)
+
+                # 'comment' is a list so we are iterating through
+                for single in comment:
+                    # converting to text
+                    single = single.text
+                    # Replacing \n space with ; for easier data handling later, creating as list for csv saving
+                    line = [single.replace('\n', ';')]
+                    # Saving each line to csv, since it is a list prevents python seperating each char (e,x,a,m,p,l,e)
+                    insta_csv.writerow(line)
+
+                # Adding scraped posts and letting user know it was successful
+                scraped_posts = scraped_posts + 1 
+                print(f"Scrape Complete: {driver.current_url}\nScraped {scraped_posts}")
+                
+                # Clicking to the next comment and loading them, starting process over until clicks reached
+                insta_click_right()
+                insta_load_comment()
+        # Except handling will print system error, let user know scrape was not complete, and close driver/system
+        except:
+            print(sys.exc_info())
+            print(f"\nScrape incomplete\nScraped {scraped_posts} posts")
+            driver.quit()
+            sys.exit()
+    # Let user know posts were scraped
+    else:
+        print(f"Scraped {scraped_posts} posts\nInstagram scrape complete")
+        driver.quit()
+
+# These 2 functions run the instagram scraper
+insta_load_comment()
+insta_save_comment()
