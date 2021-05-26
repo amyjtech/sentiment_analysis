@@ -125,7 +125,7 @@ def insta_save_comment():
 
                 # Adding scraped posts and letting user know it was successful
                 scraped_posts = scraped_posts + 1 
-                print(f"Scrape Complete: {driver.current_url}\nScraped {scraped_posts}")
+                print(f"Scraped {len(comment)} comment(s) from {driver.current_url}\nScraped {scraped_posts} post(s)")
                 
                 # Clicking to the next comment and loading them, starting process over until clicks reached
                 insta_click_right()
