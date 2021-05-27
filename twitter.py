@@ -1,4 +1,5 @@
 import sys
+import csv
 
 from selenium import webdriver
 # This allows you to interact with webpage, type/enter text, etc.
@@ -39,6 +40,14 @@ driver = webdriver.Chrome(PATH, options=options)
 
 '''
 TWITTER SCRAPER
+x Scrape tweets by keyword/user
+? Scrapes all tweets
+x Save data in an easy to manage way
+? Scrape indefinitely
+
+x Scrape specific time/dates
+o Scrapes replies/threads
+o Identify tweets scraped so they are not scraped again
 '''
 def save_tweets():
     print("Starting Twitter Scrape")
@@ -57,18 +66,22 @@ def save_tweets():
         for i,tweet in enumerate(sntwitter.TwitterSearchScraper('rideclutch').get_items()):
             if i>maxTweets:
                 break
-    
-            tweet_user = tweet.user.username
-            tweet_text = tweet.content
-            tweet_time = tweet.date
-    
-            tweets = ["Twitter Username: ", tweet_user," Tweet Content: ", tweet_text, " Tweet Time: ", str(tweet_time), ";  "]
-
-            for single in tweets:
-                save_twitter.write(single)
+            tweet_file = "tweets.csv"
+            with open(tweet_file, 'a+',encoding='utf-8',newline='') as csvfile:
                 
-        print(f"{len(tweets)} Tweets saved to file")
-
+                tweet_csv = csv.writer(csvfile,delimiter='|')
+                
+                tweet_user = tweet.user.username
+                tweet_text = tweet.content
+                tweet_time = tweet.date
+    
+                tweets = [tweet_user, tweet_text.replace('\n',' '), str(tweet_time)]
+                # Keeps track of number of tweets
+                tweets_list.append(tweet_user)
+                # Writes tweets list to CSV
+                tweet_csv.writerow(tweets)
+                
+        print(f"{len(tweets_list)} Tweets saved to file")
         print("Twitter Scrape successful")
         driver.quit()
     except:
