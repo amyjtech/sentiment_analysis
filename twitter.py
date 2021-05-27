@@ -66,9 +66,9 @@ def save_tweets():
                 
             tweet_csv = csv.writer(csvfile,delimiter='|')
                 
-            twitter_header = ['insta_name','insta_text','insta_time','no_reply']
+            twitter_header = ['tweet_name','tweet_text','tweet_time']
                 
-            if 'insta_name|' in tweet_file:
+            if 'tweet|' in tweet_file:
                 pass
             else:
                 tweet_csv.writerow(twitter_header)
