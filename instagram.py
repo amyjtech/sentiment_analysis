@@ -48,6 +48,18 @@ o Scrape replies to comments
 o Read/identify comments scraped so they are not scraped again
 o Save URLs scraped
 o Scrape Hashtags
+
+Errors:
+! Not identifying header logic and adding header again to comments
+    - Manually removed 19/20 'headers'
+    
+! Struggling with writing data to .csv easily/clean
+    - delimiter = | to prevent rows written being str and "" or written as s,t,r
+    - manually changed header from insta_name|insta_text to insta_name,insta_text for pandas
+    
+! Verified users have an extra column, need to handle
+    - manually removed 2 verified user comments
+
 '''
 # Going to the Instagram we want to scrape
 driver.get("https://www.instagram.com/rideclutch")
@@ -70,7 +82,7 @@ def insta_load_comment():
     print(f"Loading Comments: {driver.current_url}")
     
     # Endless click
-    while click < 99:
+    while click < 10:
         try:
             # Waits until comment_body loads before cont
             comment_body = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk")))
@@ -104,31 +116,37 @@ def insta_save_comment():
     scraped_posts = 0
     
     # Setting amount of posts to scrape
-    while scraped_posts < 20:
+    while scraped_posts < 15:
+  
         try:            
             comment_body = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "body > div._2dDPU.CkGkG > div.zZYga > div > article > div.eo2As > div.EtaWk")))
 
             comment = comment_body.find_elements_by_xpath("/html/body/div[5]/div[2]/div/article/div[3]/div[1]/ul/ul")
             print(f"Scraping: {driver.current_url}")
-    
+            csv_header=False
             # Opening CSV file, 'a+' appends and reads, encoding utf-8 prevents errors and saves emojis, newline='' prevents \n spacing betwen rows
             with open(insta_file, 'a+',encoding='utf-8',newline='') as csvfile:          
                 # Creating CSV Writer
                 insta_csv = csv.writer(csvfile,delimiter="|")
                 
+                # TO DO: NOT FUNCTIONING
                 insta_header = ['insta_name','insta_text','insta_time','no_reply']
                 
-                if 'insta_name|' in insta_file:
-                    pass
-                else:
+                if not csv_header:
                     insta_csv.writerow(insta_header)
-
+                    csv_header=True
+                # END TO DO: NOT FUNCTIONING
+                    
                 # 'comment' is a list so we are iterating through
                 for single in comment:
                     # converting to text
                     single = single.text
-                    # Replacing \n space with ; for easier data handling later, creating as list for csv saving
-                    line = [single.replace('\n', ' | ')]
+                    # no_comma removes commas from the comments, preventing errors in the future when uploading to pandas df
+                    no_comma = single.replace(',','')
+                    # Removes the \n at the end and replaces with ,
+                    line = [no_comma.replace('\n', ',')]
+                    
+                    print(line)
                     # Saving each line to csv, since it is a list prevents python seperating each char (e,x,a,m,p,l,e)
                     insta_csv.writerow(line)
 
