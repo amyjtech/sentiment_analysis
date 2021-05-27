@@ -1,4 +1,5 @@
 import sys
+import csv
 
 from selenium import webdriver
 # This allows you to interact with webpage, type/enter text, etc.
@@ -39,13 +40,18 @@ driver = webdriver.Chrome(PATH, options=options)
 
 '''
 FACEBOOK SCRAPER
+-------------------
+x Scrape comments under post
+o Scrape all comments under post
+    ! Only scrapes 7 comments per post
+    x Fixed Error: (<class 'TypeError'>, TypeError("'NoneType' object is not iterable")
+o Scrape indefinitely/user specified amount
+x Save data in an easy to manage way
 
-https://www.facebook.com/rideclutch
-
-Semi-Functional, scrapes several posts until-
-(<class 'TypeError'>, TypeError("'NoneType' object is not iterable"), <traceback object at 0x000001EA024161C0>)
-
-! Only scrapes 7 comments per post
+o Scrape specific time/dates
+o Scrape replies to comments
+o Read/identify comments scraped so they are not scraped again
+o Save URLs scraped
 '''
 def fb_save_comments():
     print("Starting FB Scrape")
@@ -54,47 +60,45 @@ def fb_save_comments():
         for post in get_posts('rideclutch',options={"comments": True}):
             # Setting post url to variable for use
             post_url = post['post_url']
-            # Appending the comments file
-            save_fb = open("fb_comments.txt", "a", encoding="utf-8")
             
             # Selenium grabs post url and goes to page
             driver.get(post_url)
 
             # Wait for div with comment section to load before scraping to avoid errors
             comment_div = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "#facebook ._-kb div")))
-     
-            # Let user know which URl that is being scraped
-            print(f"Scraping: {driver.current_url}")
-
-            # Accessing the comments data under the post which is a list with a dict inside
-            comments_data = post['comments_full']
-
-            # Accessing the dict within the list and specific comment data
-            for comment in comments_data:
-                # Setting variables
-                commenter_name = comment.get('commenter_name')
-                comment_text = comment.get('comment_text')
-                comment_time = comment.get('comment_time')
-
-                # Setting up list for file
-                fb_comments = ["FB Name: ", commenter_name, " FB Comment: ", comment_text, " FB Comment Time: ", str(comment_time), ";  "]
-
-                # Reading to file
-                for line in fb_comments:
-                    save_fb.write(line)
                 
-                save_fb.write("\n")
-            # Stating scrape of post with URL complete
-            print(f"Scraped: {len(fb_comments)} comments from {driver.current_url}")
 
-        # Stating scrape was complete and successful
-        print("Facebook Scrape Complete\n")
-        driver.quit()
-    except:
-        # Print error
-        print(sys.exc_info())
-        # Let user know scrape was incomplete
-        print("Facebook Scrape Incomplete\n")
-        driver.quit()
+            fb_file = "fb_comments.csv"
+                
+            # Opening CSV file, 'a+' appends and reads, encoding utf-8 prevents errors and saves emojis, newline='' prevents \n spacing betwen rows
+            with open(fb_file, 'a+',encoding='utf-8',newline='') as csvfile:          
+                # Creating CSV Writer
+                fb_csv = csv.writer(csvfile,delimiter='|')
+                # Accessing the comments data under the post which is a list with a dict inside
+                comments_data = post['comments_full']
+
+                # Accessing the dict within the list and specific comment data
+                for comment in comments_data:
+                    # Setting variables
+                    commenter_name = comment.get('commenter_name')
+                    comment_text = comment.get('comment_text')
+                    comment_time = comment.get('comment_time')
+
+                    # Setting up list for file
+                    fb_comments = [commenter_name, comment_text, str(comment_time)]
+                    
+                    fb_csv.writerow(fb_comments)
+                # Stating scrape of post with URL complete & counting comments scraped
+
+                print(f"Scraped: {len(comment)} comments from {post_url}")
+                # Force slowing scrape between pages to avoid detection
+                time.sleep(20)
+    # Stating scrape was complete and successful
+    except TypeError as e:
+        print(f"Unable to scrape {post_url}\n{e}\nContinuing FB scrape")
+
+            
+    print("Facebook Scrape Complete\n")
+    driver.quit()
           
 fb_save_comments()
