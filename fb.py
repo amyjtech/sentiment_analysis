@@ -52,6 +52,12 @@ o Scrape specific time/dates
 o Scrape replies to comments
 o Read/identify comments scraped so they are not scraped again
 o Save URLs scraped
+
+Errors:
+! Scraping the same posts, logic to save post_url in list not functional
+! Only scrapes 7 comments per post
+! Not identifying header logic and adding header again to comments
+    - Manually removed 'headers'
 '''
 def fb_save_comments():
     print("Starting FB Scrape")
