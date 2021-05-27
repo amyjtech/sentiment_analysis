@@ -113,6 +113,13 @@ def insta_save_comment():
             with open(insta_file, 'a+',encoding='utf-8',newline='') as csvfile:          
                 # Creating CSV Writer
                 insta_csv = csv.writer(csvfile)
+                
+                insta_header = ['insta_name','insta_text','insta_time','no_reply']
+                
+                if 'insta_name' in insta_file:
+                    pass
+                else:
+                    insta_csv.writerow(insta_header)
 
                 # 'comment' is a list so we are iterating through
                 for single in comment:

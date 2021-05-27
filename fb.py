@@ -74,6 +74,13 @@ def fb_save_comments():
             with open(fb_file, 'a+',encoding='utf-8',newline='') as csvfile:          
                 # Creating CSV Writer
                 fb_csv = csv.writer(csvfile,delimiter='|')
+                
+                fb_header = ['fb_name','fb_text','fb_time']
+                
+                if 'fb_name' in fb_file:
+                    pass
+                else:
+                    fb_csv.writerow(fb_header)
                 # Accessing the comments data under the post which is a list with a dict inside
                 comments_data = post['comments_full']
 

@@ -71,6 +71,13 @@ def save_tweets():
                 
                 tweet_csv = csv.writer(csvfile,delimiter='|')
                 
+                tweet_header = ['tweet_name','tweet_text','tweet_time']
+                
+                if 'tweet_name' in tweet_file:
+                    pass
+                else:
+                    tweet_csv.writerow(tweet_header)
+                
                 tweet_user = tweet.user.username
                 tweet_text = tweet.content
                 tweet_time = tweet.date
