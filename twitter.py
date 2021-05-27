@@ -48,6 +48,10 @@ x Save data in an easy to manage way
 x Scrape specific time/dates
 o Scrapes replies/threads
 o Identify tweets scraped so they are not scraped again
+
+Errors:
+! Not identifying header logic and adding header again to comments
+    - Manually removed 'headers'
 '''
 def save_tweets():
     print("Starting Twitter Scrape")
