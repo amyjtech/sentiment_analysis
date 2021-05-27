@@ -119,7 +119,7 @@ def insta_save_comment():
                     # converting to text
                     single = single.text
                     # Replacing \n space with ; for easier data handling later, creating as list for csv saving
-                    line = [single.replace('\n', ';')]
+                    line = [single.replace('\n', '|')]
                     # Saving each line to csv, since it is a list prevents python seperating each char (e,x,a,m,p,l,e)
                     insta_csv.writerow(line)
 
