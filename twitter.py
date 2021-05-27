@@ -60,23 +60,24 @@ def save_tweets():
 
         # Appending the tweets to file
         save_twitter = open("tweets.txt", "a", encoding="utf-8")
-
-        # Using TwitterSearchScraper to scrape data and append tweets to list
-        # since:2020-06-01 until:2021-05-20 <-- specify timeframe
-        for i,tweet in enumerate(sntwitter.TwitterSearchScraper('rideclutch').get_items()):
-            if i>maxTweets:
-                break
-            tweet_file = "tweets.csv"
-            with open(tweet_file, 'a+',encoding='utf-8',newline='') as csvfile:
+        tweet_file = "tweets.csv"
+        
+        with open(tweet_file, 'a+',encoding='utf-8',newline='') as csvfile:
                 
-                tweet_csv = csv.writer(csvfile,delimiter='|')
+            tweet_csv = csv.writer(csvfile,delimiter='|')
                 
-                tweet_header = ['tweet_name','tweet_text','tweet_time']
+            twitter_header = ['insta_name','insta_text','insta_time','no_reply']
                 
-                if 'tweet_name' in tweet_file:
-                    pass
-                else:
-                    tweet_csv.writerow(tweet_header)
+            if 'insta_name|' in tweet_file:
+                pass
+            else:
+                tweet_csv.writerow(twitter_header)
+            # Using TwitterSearchScraper to scrape data and append tweets to list
+            # since:2020-06-01 until:2021-05-20 <-- specify timeframe
+            for i,tweet in enumerate(sntwitter.TwitterSearchScraper('rideclutch').get_items()):
+               
+                if i>maxTweets:
+                    break
                 
                 tweet_user = tweet.user.username
                 tweet_text = tweet.content
