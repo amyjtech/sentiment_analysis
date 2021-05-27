@@ -81,7 +81,9 @@ def insta_load_comment():
             # Action to click the '+' button
             load_more.click()
             click = click + 1
-            print(f"Click {click} successful") 
+            print(f"Click {click} successful")
+            # Prevent detection for scraping
+            time.sleep(15) 
             
         # Let user know they have reached end of comments
         except exceptions.NoSuchElementException as e:
@@ -112,11 +114,11 @@ def insta_save_comment():
             # Opening CSV file, 'a+' appends and reads, encoding utf-8 prevents errors and saves emojis, newline='' prevents \n spacing betwen rows
             with open(insta_file, 'a+',encoding='utf-8',newline='') as csvfile:          
                 # Creating CSV Writer
-                insta_csv = csv.writer(csvfile)
+                insta_csv = csv.writer(csvfile,delimiter="|")
                 
                 insta_header = ['insta_name','insta_text','insta_time','no_reply']
                 
-                if 'insta_name' in insta_file:
+                if 'insta_name|' in insta_file:
                     pass
                 else:
                     insta_csv.writerow(insta_header)
@@ -126,7 +128,7 @@ def insta_save_comment():
                     # converting to text
                     single = single.text
                     # Replacing \n space with ; for easier data handling later, creating as list for csv saving
-                    line = [single.replace('\n', '|')]
+                    line = [single.replace('\n', ' | ')]
                     # Saving each line to csv, since it is a list prevents python seperating each char (e,x,a,m,p,l,e)
                     insta_csv.writerow(line)
 
