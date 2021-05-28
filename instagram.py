@@ -58,7 +58,7 @@ Errors:
     - manually changed header from insta_name|insta_text to insta_name,insta_text for pandas
     
 ! Verified users have an extra column, need to handle
-    - manually removed 2 verified user comments
+    omengq,Verified,ManiLa,5d1 likeReply
 
 '''
 # Going to the Instagram we want to scrape
