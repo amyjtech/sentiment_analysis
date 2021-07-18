@@ -2,7 +2,7 @@
 ## Scraping and analyzing Instagram, Facebook, and Twitter
 Scraping Facebook, Twitter and Instagram comments of a specific user profile.  The comments are saved into a .csv file to be analyzed.
 
-The data is analyzed using JupyterNotebook, Pandas and TextBlob.  
+The data is analyzed in JupyterNotebook use Pandas and TextBlob.  
 
 ### Mac OS Checklist
  - [ ] Create virtual environment
