@@ -6,6 +6,10 @@ Scraping Facebook, Twitter and Instagram comments of a specific user profile. Th
 
 The data is analyzed in JupyterNotebook using Pandas and TextBlob.
 
+## Documentation
+
+- [Instagram](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/instagram.md)
+
 ### Program Checklist
 
 - [ ] Create/find twitter scraper
