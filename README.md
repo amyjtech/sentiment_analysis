@@ -1,24 +1,29 @@
 # Sentiment Analysis Program
-## Scraping and analyzing Instagram, Facebook, and Twitter
-Scraping Facebook, Twitter and Instagram comments of a specific user profile.  The comments are saved into a .csv file to be analyzed.
 
-The data is analyzed in JupyterNotebook using Pandas and TextBlob.  
+## Scraping and analyzing Instagram, Facebook, and Twitter
+
+Scraping Facebook, Twitter and Instagram comments of a specific user profile. The comments are saved into a .csv file to be analyzed.
+
+The data is analyzed in JupyterNotebook using Pandas and TextBlob.
 
 ### Mac OS Checklist
- - [ ] Create virtual environment
- - [ ] Download packages
- - [ ] Edit file routes
+
+- [x] Create virtual environment - Downloaded chromedriver globally since I will be using it often
+- [x] Download packages
+- [x] Edit file routes
 
 ### Program Checklist
- - [ ] Create/find twitter scraper
- - [ ] Fix errors in scraping code
- - [ ] Save comments per parameters
- - [ ] Process with TextBlob or another NLP/machine learning tool
+
+- [ ] Create/find twitter scraper
+- [ ] Fix errors in scraping code
+- [ ] Save comments per parameters
+- [ ] Process with TextBlob or another NLP/machine learning tool
 
 ### Required Packages
- - [Selenium](https://selenium-python.readthedocs.io/installation.html#)
- - [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
- - [Facebook Scraper](https://pypi.org/project/facebook-scraper/)
- - [Pandas](https://pandas.pydata.org/)
- - [Jupyter](https://jupyter.org/)
- - [TextBlob](https://textblob.readthedocs.io/en/dev/)
+
+- [Selenium](https://selenium-python.readthedocs.io/installation.html#)
+- [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
+- [Facebook Scraper](https://pypi.org/project/facebook-scraper/)
+- [Pandas](https://pandas.pydata.org/)
+- [Jupyter](https://jupyter.org/)
+- [TextBlob](https://textblob.readthedocs.io/en/dev/)
