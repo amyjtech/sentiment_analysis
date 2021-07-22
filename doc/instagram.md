@@ -25,3 +25,5 @@ Scrapes the comments of presest number of posts of a specifed profile on Instagr
 - [x] Click '+' and load all comments
 - [x] Scrape indefinitely/user specified amount
 - [x] Save comments to csv file
+
+[Back to Main Page](https://github.com/amyjtech/sentiment_analysis)
