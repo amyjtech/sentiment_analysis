@@ -9,6 +9,7 @@ The data is analyzed in JupyterNotebook using Pandas and TextBlob.
 ## :page_facing_up: Documentation
 
 - [Instagram Scraper](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/instagram.md)
+- [Facebook Scraper](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/fb.md)
 
 ### :memo: Program Checklist
 
