@@ -9,7 +9,7 @@ This program goes to a specified user profile and saves **some** of the comments
 
 ## **:microbe: Bugs**
 
-- [ ] Fixed Error: (<class 'TypeError'>, TypeError("'NoneType' object is not iterable")
+- [ ] `Fixed Error: (<class 'TypeError'>, TypeError("'NoneType' object is not iterable")`
 - [ ] Only scrapes 7 comments per post
 
 ## **:memo: To Do**
