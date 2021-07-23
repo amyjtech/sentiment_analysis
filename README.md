@@ -6,18 +6,18 @@ Scraping Facebook, Twitter and Instagram comments of a specific user profile. Th
 
 The data is analyzed in JupyterNotebook using Pandas and TextBlob.
 
-## Documentation
+## :page_facing_up: Documentation
 
-- [Instagram](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/instagram.md)
+- [Instagram Scraper](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/instagram.md)
 
-### Program Checklist
+### :memo: Program Checklist
 
 - [ ] Create/find twitter scraper
 - [ ] Fix errors in scraping code
 - [ ] Save comments per parameters
 - [ ] Process with TextBlob or another NLP/machine learning tool
 
-### Required Packages
+### :pushpin: Required Packages
 
 - [Selenium](https://selenium-python.readthedocs.io/installation.html#)
 - [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup)
