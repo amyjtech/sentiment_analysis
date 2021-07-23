@@ -2,16 +2,16 @@
 
 This program goes to a specified user profile and saves all of the comments to a `.csv` file of `x` posts.
 
-## **Table of Contents**
+## **:bookmark: Table of Contents**
 
 - [Main Page](https://github.com/amyjtech/sentiment_analysis)
 
-## **Bugs**
+## **:microbe: Bugs**
 
 - [ ] Currently saving repeat data
 - [ ] Verified user data not saving correcly
 
-## **To Do**
+## **:memo: To Do**
 
 - [ ] Save date/time of post
 - [ ] Save replies to comments
@@ -19,13 +19,13 @@ This program goes to a specified user profile and saves all of the comments to a
 - [ ] Save likes of post
 - [ ] Save URL's scraped
 
-## **Nice to Have**
+## **:crystal_ball: Nice to Have**
 
 - [ ] Scrape posts under a specified hashtag
 
-### **Completed**
+### **:jigsaw: Completed**
 
 - [x] Scrape comments under post
 - [x] Click '+' and load all comments
 - [x] Scrape indefinitely/user specified amount
-- [x] Save comments to csv file
+- [x] Save comments to `.csv` file
