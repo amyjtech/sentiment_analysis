@@ -29,9 +29,3 @@ This program goes to a specified user profile and saves all of the comments to a
 - [x] Click '+' and load all comments
 - [x] Scrape indefinitely/user specified amount
 - [x] Save comments to csv file
-<<<<<<< HEAD
-=======
-
-[Back to Main Page](https://github.com/amyjtech/sentiment_analysis)
-
->>>>>>> 685caa1d06270a3ce88e00139c4095f84ed9928c
