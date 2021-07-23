@@ -18,7 +18,7 @@ This program goes to a specified user profile and saves all of the comments to a
 - [ ] Save replies to comments
 - [ ] Save total comments of post
 - [ ] Save likes of post
-- [ ] Save URL's scraped
+- [x] Save URL's scraped
 
 ## **:crystal_ball: Nice to Have**
 
