@@ -5,6 +5,7 @@ This program goes to a specified user profile and saves **some** of the comments
 ## **:bookmark: Table of Contents**
 
 - [Main Page](https://github.com/amyjtech/sentiment_analysis)
+- [Instagram Scraper](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/instagram.md)
 
 ## **:microbe: Bugs**
 
