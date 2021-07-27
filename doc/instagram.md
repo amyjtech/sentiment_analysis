@@ -5,6 +5,7 @@ This program goes to a specified user profile and saves all of the comments to a
 ## **:bookmark: Table of Contents**
 
 - [Main Page](https://github.com/amyjtech/sentiment_analysis)
+- [Facebook Scraper](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/fb.md)
 
 ## **:microbe: Bugs**
 
