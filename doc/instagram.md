@@ -31,4 +31,4 @@ This program goes to a specified user profile and saves all of the comments to a
 - [x] Scrape indefinitely/user specified amount
 - [x] Save comments to `.csv` file
 - [ ] ~~Verified user data not saving correcly~~
-  - Code was changed so this is no longer a problem
+  - _Code was changed so this is no longer a problem_
