@@ -10,7 +10,6 @@ This program goes to a specified user profile and saves all of the comments to a
 ## **:microbe: Bugs**
 
 - [ ] Currently saving repeat data
-- [ ] Verified user data not saving correcly
 
 ## **:memo: To Do**
 
@@ -31,3 +30,5 @@ This program goes to a specified user profile and saves all of the comments to a
 - [x] Click '+' and load all comments
 - [x] Scrape indefinitely/user specified amount
 - [x] Save comments to `.csv` file
+- [ ] ~~Verified user data not saving correcly~~
+  - Code was changed so this is no longer a problem
