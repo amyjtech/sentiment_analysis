@@ -26,7 +26,7 @@ import datetime
 
 options = webdriver.ChromeOptions()
 # Was getting an encoding error.  Passing r"" creates a raw string preventing errors when locating the file
-options.add_argument("user-data-dir=C:\\Users\\AmySmith\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 2")
+options.add_argument("user-data-dir=")
 # Prevents windows error
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
 # This prevents the browser from closing immediately after running
