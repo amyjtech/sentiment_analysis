@@ -14,11 +14,7 @@ This program goes to a specified user profile and saves all of the comments to a
 
 ## **:memo: To Do**
 
-- [ ] Save date/time of post
 - [ ] Save replies to comments
-- [ ] Save total comments of post
-- [ ] Save likes of post
-- [x] Save URL's scraped
 
 ## **:crystal_ball: Nice to Have**
 
@@ -26,6 +22,11 @@ This program goes to a specified user profile and saves all of the comments to a
 
 ### **:jigsaw: Completed**
 
+- [x] Save total comments of post
+- [x] Save date/time of post
+- [x] Save date/time of user comment
+- [x] Save likes of post
+- [x] Save URL's scraped
 - [x] Scrape comments under post
 - [x] Click '+' and load all comments
 - [x] Scrape indefinitely/user specified amount
