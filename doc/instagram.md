@@ -7,9 +7,18 @@ This program goes to a specified user profile and saves all of the comments to a
 - [Main Page](https://github.com/amyjtech/sentiment_analysis)
 - [Facebook Scraper](https://github.com/amyjtech/sentiment_analysis/blob/main/doc/fb.md)
 
+## **Modules Used**
+
+- CSV
+- Selenium Webdriver
+- Beautiful Soup
+- Time
+
 ## **:microbe: Bugs**
 
-- [ ] Currently saving repeat data
+Bug free!
+
+- [x] ~~Currently saving repeat data~~
 
 ## **:memo: To Do**
 
@@ -30,5 +39,5 @@ This program goes to a specified user profile and saves all of the comments to a
 - [x] Click '+' and load all comments
 - [x] Scrape indefinitely/user specified amount
 - [x] Save comments to `.csv` file
-- [ ] ~~Verified user data not saving correcly~~
+- [x] ~~Verified user data not saving correcly~~
   - _Code was changed so this is no longer a problem_
