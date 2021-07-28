@@ -16,6 +16,9 @@ The data is analyzed in JupyterNotebook using Pandas and TextBlob.
 - [ ] Create/find twitter scraper
 - [ ] Fix errors in scraping code
 - [ ] Save comments per parameters
+  - [x] Instagram
+  - [ ] Facebook
+  - [ ] Twitter
 - [ ] Process with TextBlob or another NLP/machine learning tool
 
 ### :pushpin: Required Packages
