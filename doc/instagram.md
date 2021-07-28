@@ -27,6 +27,7 @@ Bug free!
 ## **:crystal_ball: Nice to Have**
 
 - [ ] Scrape posts under a specified hashtag
+- [ ] Scrape posts within specified timeframe
 
 ### **:jigsaw: Completed**
 
